@@ -1,0 +1,121 @@
+:root {
+  --ink: #1c2541;
+  --ink-soft: #4a5578;
+  --paper: #eef1f7;
+  --white: #ffffff;
+  --accent: #ffd84d;
+  --danger: #c0264b;
+  --note-yellow: #ffe066;
+  --note-mint: #9be8d8;
+  --note-pink: #ffb4c2;
+  --note-blue: #b8c7ff;
+  --font-display: 'Bricolage Grotesque', 'Segoe UI', sans-serif;
+  --font-body: 'Figtree', 'Segoe UI', system-ui, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background-color: var(--paper);
+  background-image: radial-gradient(rgba(28, 37, 65, 0.12) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+h2 {
+  margin: 0 0 1rem;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 800;
+}
+
+/* Layout utama: CSS Grid, form di kiri dan daftar di kanan */
+.layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 360px) 1fr;
+  gap: 2rem;
+  align-items: start;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 3rem;
+}
+
+.layout__form {
+  position: sticky;
+  top: 5.5rem;
+}
+
+/* Daftar catatan: CSS Grid (kriteria wajib 3) */
+note-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Warna tiap sticky note digilir lewat custom property yang diwarisi ke Shadow DOM */
+note-item:nth-child(4n + 1) {
+  --note-bg: var(--note-yellow);
+  --tilt: -0.8deg;
+}
+note-item:nth-child(4n + 2) {
+  --note-bg: var(--note-mint);
+  --tilt: 0.6deg;
+}
+note-item:nth-child(4n + 3) {
+  --note-bg: var(--note-pink);
+  --tilt: -0.4deg;
+}
+note-item:nth-child(4n + 4) {
+  --note-bg: var(--note-blue);
+  --tilt: 0.9deg;
+}
+
+.empty-state {
+  grid-column: 1 / -1;
+  padding: 2rem;
+  border: 2px dashed var(--ink-soft);
+  border-radius: 12px;
+  text-align: center;
+  color: var(--ink-soft);
+}
+
+/* Responsive: satu kolom di tablet dan ponsel */
+@media (max-width: 800px) {
+  .layout {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .layout__form {
+    position: static;
+  }
+}
+
+/* Tab filter: catatan aktif / arsip */
+.tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.tab {
+  padding: 0.45rem 1rem;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--ink);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.tab.is-active {
+  background: var(--accent);
+}

@@ -1,0 +1,24 @@
+{
+  "name": "notes-app",
+  "version": "2.0.0",
+  "description": "Notes App terintegrasi dengan Notes API (Dicoding)",
+  "private": true,
+  "scripts": {
+    "start-dev": "webpack serve --mode development",
+    "build": "webpack --mode production",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "css-loader": "^7.1.5",
+    "html-webpack-plugin": "^5.6.8",
+    "prettier": "^3.9.10",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.112.0",
+    "webpack-cli": "^7.2.3",
+    "webpack-dev-server": "^6.1.0"
+  },
+  "dependencies": {
+    "animejs": "^4.5.0",
+    "sweetalert2": "^11.26.25"
+  }
+}
